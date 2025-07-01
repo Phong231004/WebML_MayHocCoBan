@@ -277,7 +277,6 @@ async function runAlgorithm() {
       output += `</tbody></table>`;
     }    
     
-    
     else {
       output += '<div class="text-danger">Lỗi tùy chọn, vui lòng load lại</div>';
     }
@@ -1495,3 +1494,4 @@ function explainLogisticRegression(X, y, testX, learningRate = 0.1, maxIter = 5)
 
   return output;
 }
+

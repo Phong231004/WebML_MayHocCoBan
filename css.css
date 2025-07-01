@@ -320,3 +320,60 @@ h3 {
 .guide-table tr:hover td {
   background-color: #f1f1f1;
 }
+
+
+.math-explanation {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+.math-section, .iteration-steps, .conclusion {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.step {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f0f8ff;
+  border-radius: 5px;
+}
+table {
+  margin-bottom: 20px;
+}
+
+/* Trong CSS hoặc <style> */
+.chart-container {
+  max-width: 900px; /* hoặc 100% nếu responsive toàn bộ */
+  margin: 30px auto; /* canh giữa */
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+
+.canvas-wrapper, .cutTreeCanvasWrapper {
+  width: 90vw; /* 90% màn hình */
+  overflow-x: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#dendrogramCanvas, #dendrogramCutCanvas {
+  display: block;
+  max-width: 100%; /* Cho phép co theo wrapper */
+  height: 200px; /* Chiều cao cố định */
+}
+
