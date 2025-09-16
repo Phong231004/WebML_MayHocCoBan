@@ -1133,7 +1133,8 @@ function explainLinearRegression(X_raw, y, testX) {
   const m = X_raw.length;
   const n = X_raw[0].length;
 
-  const X = X_raw;
+  const X = Array.isArray(X_raw[0]) ? X_raw : X_raw.map(x => [x]);
+
   const y_sum = y.reduce((a, b) => a + b, 0);
 
   const X_matrix = X.map(row => [1, ...row]); // thêm cột bias 1
