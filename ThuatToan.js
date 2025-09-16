@@ -1131,11 +1131,7 @@ function explainDecisionTree(X, y, testX) {
 //Thuật toán Hồi quy tuyến tính
 function explainLinearRegression(X_raw, y, testX) {
   const m = X_raw.length;
-  const n = X_raw[0].length;
-
   const X = Array.isArray(X_raw[0]) ? X_raw : X_raw.map(x => [x]);
-
-  const y_sum = y.reduce((a, b) => a + b, 0);
 
   const X_matrix = X.map(row => [1, ...row]); // thêm cột bias 1
   const XT = math.transpose(X_matrix);
@@ -1177,6 +1173,7 @@ function explainLinearRegression(X_raw, y, testX) {
       w = (X^T X)^{-1} X^T y
     \\]</p>
   `;
+
   steps += `
     <p>Ta giải theo công thức:</p>
     <p>\\[
@@ -1185,10 +1182,7 @@ function explainLinearRegression(X_raw, y, testX) {
     <p>Với:</p>
     <p>\\[
       X = \\begin{bmatrix}
-        1 & ${X[0].join(" & ")} \\\\
-        1 & ${X[1].join(" & ")} \\\\
-        1 & ${X[2].join(" & ")} \\\\
-        1 & ${X[3].join(" & ")}
+        ${X.map(row => "1 & " + row.join(" & ")).join(" \\\\\\ ")}
       \\end{bmatrix},
       \\quad
       y = \\begin{bmatrix}
@@ -1203,10 +1197,7 @@ function explainLinearRegression(X_raw, y, testX) {
     <p>Bắt đầu với ma trận đầu vào:</p>
     <p>\\[
       X = \\begin{bmatrix}
-        1 & ${X[0].join(" & ")} \\\\
-        1 & ${X[1].join(" & ")} \\\\
-        1 & ${X[2].join(" & ")} \\\\
-        1 & ${X[3].join(" & ")}
+        ${X.map(row => "1 & " + row.join(" & ")).join(" \\\\\\ ")}
       \\end{bmatrix}
     \\]</p>
     <p>\\[
@@ -1220,9 +1211,7 @@ function explainLinearRegression(X_raw, y, testX) {
     <p>Tính ma trận chuyển vị của X: \\( X^T \\)</p>
     <p>\\[
       X^T = \\begin{bmatrix}
-        ${XT[0].join(" & ")} \\\\
-        ${XT[1].join(" & ")} \\\\
-        ${XT[2].join(" & ")}
+        ${XT.map(row => row.join(" & ")).join(" \\\\\\ ")}
       \\end{bmatrix}
     \\]</p>
   `;
@@ -1231,9 +1220,7 @@ function explainLinearRegression(X_raw, y, testX) {
     <p>Tính \\( X^T X \\):</p>
     <p>\\[
       X^T X = \\begin{bmatrix}
-        ${XT_X[0].map(e => e.toFixed(2)).join(" & ")} \\\\
-        ${XT_X[1].map(e => e.toFixed(2)).join(" & ")} \\\\
-        ${XT_X[2].map(e => e.toFixed(2)).join(" & ")}
+        ${XT_X.map(row => row.map(e => e.toFixed(2)).join(" & ")).join(" \\\\\\ ")}
       \\end{bmatrix}
     \\]</p>
   `;
@@ -1252,7 +1239,7 @@ function explainLinearRegression(X_raw, y, testX) {
     <p>1. Tính nghịch đảo \\( (X^T X)^{-1} \\)</p>
     <p>\\[
       (X^T X)^{-1} = \\begin{bmatrix}
-        ${math.inv(XT_X).map(row => row.map(e => e.toFixed(3)).join(" & ")).join(" \\\\ ")}
+        ${math.inv(XT_X).map(row => row.map(e => e.toFixed(3)).join(" & ")).join(" \\\\\\ ")}
       \\end{bmatrix}
     \\]</p>
     <p>2. Nhân với \\( X^T y \\) để tìm vector trọng số \\( w \\):</p>
@@ -1286,7 +1273,6 @@ function explainLinearRegression(X_raw, y, testX) {
         \\hat{y} = ${w_vector[0].toFixed(3)} + ${testX.map((xi, i) => `${w_vector[i + 1].toFixed(3)} \\times ${xi}`).join(" + ")} = ${y_pred.toFixed(3)}
       \\]
     </p>
-
   `;
 
   setTimeout(() => window.MathJax?.typeset(), 0);
